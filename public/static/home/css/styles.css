@@ -559,7 +559,21 @@ img{
         height: 640px;
     }
 }
-/
+
+
+
+.button-1{
+  /* display: inline-block; */
+  background-color: var(--first-color);
+  color: #FFF;
+  padding: .5rem .4rem;
+  border-radius: .5rem;
+  transition: .3s;
+}
+
+.button-1:hover{
+  background-color: var(--first-color-alt);
+}
 
 /* <==loader==> */
 /* .load{

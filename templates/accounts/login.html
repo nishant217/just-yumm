@@ -24,8 +24,9 @@
                 <!-- <img src="assets/img/plate3.png" alt="" class="form__img"> -->
 
 
-                <form action="" class="form__content">
-                    <h1 class="form__title">Sign In</h1>
+                <form action="" class="form__content" method="POST">
+                    {%csrf_token%}
+                    <h1 class="form__title">Login</h1>
 
                     <div class="form__div form__div-one">
                         <div class="form__icon">
@@ -34,7 +35,7 @@
 
                         <div class="form__div-input">
                             <label for="" class="form__label">Username</label>
-                            <input type="text" class="form__input">
+                            <input type="text" name="email" class="form__input">
                         </div>
                     </div>
 
@@ -45,15 +46,15 @@
 
                         <div class="form__div-input">
                             <label for="" class="form__label">Password</label>
-                            <input type="password" class="form__input">
+                            <input type="password" required name="password" class="form__input">
                         </div>
                     </div>
                     <a href="#" class="form__forgot">Forgot Password?</a>
-
+                    {% include "base/alert.html"%}
                     <input type="submit" class="form__button" value="Login">
 
                     <!-- <a href="#" class="form__forgot">Don't have an account <span>Register</span></a> -->
-                    <span class=" from__account">Don't have an account? <a class="form__a" href="#">Register</a> </span>
+                    <span class=" from__account">Don't have an account? <a class="form__a" href="{% url 'register' %}">Register</a> </span>
 
                     <div class="form__social">
                         <span class="form__social-text">Our login with</span>

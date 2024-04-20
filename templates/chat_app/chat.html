@@ -1,0 +1,304 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+      body, html {
+        height: 100%;
+        font-family:'Poppins', sans-serif;
+        background-color: #1D2521;
+      }
+      
+  
+      .messages-box {
+        flex: 1;
+        overflow-y: auto;
+        margin-top:50px;
+      }
+  
+      .messages-list {
+        padding-left: 0;
+      }
+  
+      .message {
+        margin-bottom: 15px;
+        list-style: none;
+        font-family:'Poppins', sans-serif;
+      }
+  
+      .message-text {
+        padding: 10px;
+        font-family:'Poppins', sans-serif;
+        border-radius: 5px;
+      }
+  
+      .sent {
+        background-color: #1D2521;
+        align-self: flex-end;
+        font-family:'Poppins', sans-serif;
+        color: white;
+      }
+  
+      .received {
+        background-color: #048654;
+        align-self: flex-start;
+        color: white;
+        font-family:'Poppins', sans-serif;
+      }
+  
+      .message-form {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        padding-bottom:2rem;
+        left: 0;
+        font-family:'Poppins', sans-serif;
+        right: 0;
+        padding: 10px;
+        color: white;
+        background-color: #1D2521;
+      }
+  
+      .message-input {
+        flex: 1;
+        border-radius: 0;
+        font-family:'Poppins', sans-serif;
+        border-right: none;
+      }
+      .message-input:hover{
+        color: #069C54;
+        text-decoration: none;
+        box-shadow: 0 4px 4px  #069C54;
+      }
+  
+      .btn-send {
+        border-radius: 50%;
+        border:none;
+        margin-left:10px;
+        font-family:'Poppins', sans-serif;
+      }
+      .btn-send:hover{
+        color: #069C54;
+        text-decoration: none;
+      }
+  
+      .chat-container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .nav{
+        display:flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+      .nav__logo,.nav__link{
+        color: #707070;
+        font-weight: 700;
+        
+        text-decoration: none;
+      }
+      .nav__link:hover{
+        text-decoration: none;
+        color: #069C54;
+      }
+      a{
+        text-decoration: none;
+      }
+      .nav__logo:hover{
+        color: #069C54;
+        text-decoration: none;
+      }
+      #nav{
+        display: flex;
+        justify-content: space-between;
+        text-decoration: none;
+        
+        position: fixed;
+        width:100%;
+        margin-bottom:100px;
+        box-shadow: 0 4px 4px #707070;
+        text-align: center;
+        
+      }
+      .nav__list{
+        display: flex;
+        justify-content: space-between;
+        text-decoration: none;
+      }
+      .nav__item{
+        margin-left: 2.5rem;
+        margin-bottom: 0;
+        text-decoration: none;
+      }
+      .nav__item:hover{
+        color: #069C54;
+        text-decoration: none;
+      }
+      ul{
+        padding: 0;
+        list-style: none;
+      }
+      .send{
+        background-color: #1D2521;
+      }
+      #input{
+        display: flex;
+        width:70%;
+        margin-left:12rem;
+        text-decoration: none;
+        font-family:'Poppins', sans-serif;
+        justify-content: center;
+        align-items:center;
+        border-radius:3rem;
+      }
+      #in{
+        width:70%;
+        border-radius:3rem;
+        justify-content: center;
+        align-items:center;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div class="chat-container bg-dark">
+      <div class="card flex-grow-1 bg-dark">
+        
+        <div class="card-header bg-primary text-white bg-dark" id="nav">
+          <a href="" class="nav__logo">Just Yumm!</a>
+          <div class="nav__menu" id="nav-menu">
+            <ul class="nav__list">
+              <li class="nav__item"><a href="#home" class="nav__link active-link">Back</a></li>
+              <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+              <li class="nav__item"><a href="#home" class="nav__link active-link reset">Reset</a></li>
+            </ul>
+          </div>
+          
+        </div>  
+        <div class="card-body messages-box bg-dark">
+          <ul class="list-unstyled messages-list bg-dark">
+            
+           
+    
+            {% for chat in chats %}
+              {% if chat.user == request.user %}
+              <li class="message sent">
+                <div class="message-text">
+                  <div class="message-sender">
+                    <b>You</b>
+                  </div>
+                  <div class="message-content">
+                     {{chat.message}}
+                  </div>
+                </div>
+              </li>
+    
+              <li class="message received">
+                <div class="message-text">
+                  <div class="message-sender">
+                    <b>AI Chatbot</b>
+                  </div>
+                  <div class="message-content">
+                     {{chat.response}}
+                  </div>
+                </div>
+              </li>
+    
+              {% endif %}
+            {% endfor %}
+          </ul>
+          
+        </div>
+        <br><br>
+        <br><br>
+        <br><br>
+      </div>
+      <form class="message-form bg-dark">
+        {%csrf_token%}
+        <div class="input-group bg-dark" id="input">
+          <input type="text" id="in" class="form-control message-input bg-dark text-white" placeholder="Type your message...">
+          <div class="input-group-append bg-dark">
+            <button type="submit" class="btn btn-primary btn-send bg-dark " ><i class='bx bxs-send'></i></button>
+          </div>
+        </div>
+      </form>
+    </div>
+    
+    <script>
+      const messagesList = document.querySelector('.messages-list');
+      const messageForm = document.querySelector('.message-form');
+      const messageInput = document.querySelector('.message-input');
+      
+      const resetChatLink = document.querySelector('.reset');
+    resetChatLink.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        // Clear the chat history by removing all child elements from messagesList
+        while (messagesList.firstChild) {
+            messagesList.removeChild(messagesList.firstChild);
+        }
+    });
+      messageForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+    
+        const message = messageInput.value.trim();
+        if (message.length === 0) {
+          return;
+        }
+    
+        const messageItem = document.createElement('li');
+        messageItem.classList.add('message', 'sent');
+        messageItem.innerHTML = `
+            <div class="message-text">
+                <div class="message-sender">
+                    <b>You</b>
+                </div>
+                <div class="message-content">
+                    ${message}
+                </div>
+            </div>`;
+        messagesList.appendChild(messageItem);
+    
+        messageInput.value = '';
+    
+        fetch('', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({
+            'csrfmiddlewaretoken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+            'message': message
+          })
+        })
+          .then(response => response.json())
+          .then(data => {
+            const response = data.response;
+            const messageItem = document.createElement('li');
+            messageItem.classList.add('message', 'received');
+            messageItem.innerHTML = `
+            <div class="message-text">
+                <div class="message-sender">
+                  <b>Just Yumm!</b>
+                </div>
+                <div class="message-content">
+                    ${response}
+                </div>
+            </div>
+              `;
+            messagesList.appendChild(messageItem);
+          });
+      });
+    
+    </script>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>

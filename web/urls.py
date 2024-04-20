@@ -22,11 +22,16 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from home.views import home_page
 
 urlpatterns = [
+    path('admin/', admin.site.urls),    # Django admin route
+    # path('admin' , admin.site.urls),
     
-    path('',home_page,name='home'),
-    # path("admin/", admin.site.urls),
+    path('' , include('home.urls') ),
+    path("dietchat/",include('deit.urls')),
+    # path('product/' , include('products.urls') ),
     path('accounts/' , include('accounts.urls') ),
-    path("admin/", admin.site.urls, name='admin_site'),
+    # path("chat_app/", include("chat_app.urls")),
+    path('chatbot/',include('chatbot.urls')),
+    path('page1/',include("page1.urls")),
 
     
     

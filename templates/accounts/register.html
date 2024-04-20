@@ -27,7 +27,8 @@
 
                 <form action="" class="form__content" method='POST'>
                     {% csrf_token %}
-                    <h1 class="form__title">Sign Up</h1>
+                    
+                    <h1 class="form__title">Register</h1>
 
                     <div class="form__div form__div-one">
                         <div class="form__icon">
@@ -58,7 +59,7 @@
 
                         <div class="form__div-input">
                             <label for="" class="form__label">Email</label>
-                            <input type="password" class="form__input" required name="email">
+                            <input type="text" class="form__input" required name="email">
                         </div>
                     </div>
 
@@ -75,7 +76,7 @@
                     </div>
 
                     <!-- <a href="#" class="form__forgot">Forgot Password?</a> -->
-
+                    {% include "base/alert.html"%}
                     <input type="submit" class="form__button" value="Login">
 
                     <!-- <a href="#" class="form__forgot">Don't have an account <span>Register</span></a> -->
