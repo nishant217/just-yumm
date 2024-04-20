@@ -31,8 +31,8 @@
                     <ul class="nav__list">
                         <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
                         <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
-                        <li class="nav__item"><a href="#services" class="nav__link">Services</a></li>
-                        <li class="nav__item"><a href="#menu" class="nav__link">Menu</a></li>
+                        <li class="nav__item"><a href="{% url 'diet' %}" class="nav__link">deit</a></li>
+                        <li class="nav__item"><a href="{% url 'chat' %}" class="nav__link">chatbot</a></li>
                         <li class="nav__item"><a href="#contact" class="nav__link">Contact us</a></li>
 
                         <li><i class='bx bx-moon change-theme' id="theme-button"></i></li>
@@ -52,7 +52,7 @@
                     <div class="home__data">
                         <h1 class="home__title">Tasty food</h1>
                         <h2 class="home__subtitle">Try the best food of <br> the week.</h2>
-                        <a href="#" class="button">View Menu</a>
+                        <a href="{% url 'chat' %}" class="button">Chatbot</a>
                     </div>
     
                     <img src="/media/home/img/home.png" alt="" class="home__img">
@@ -64,9 +64,9 @@
                 <div class="about__container  bd-grid">
                     <div class="about__data">
                         <span class="section-subtitle about__initial">About us</span>
-                        <h2 class="section-title about__initial">We cook the best <br> tasty food</h2>
-                        <p class="about__description">We cook the best food in the entire city, with excellent customer service, the best meals and at the best price, visit us.</p>
-                        <a href="#" class="button">Explore history</a>
+                        <h2 class="section-title about__initial">We recommendate the best <br> tasty food</h2>
+                        <p class="about__description">We recommendate the best food in the entire city, with excellent customer service, the best meals and at the best price, visit us.</p>
+                        <a href="{% url 'diet' %}" class="button">Recipe Chatbot</a>
                     </div>
 
                     <img src="/media/home/img/about.jpg" alt="" class="about__img">
@@ -142,7 +142,7 @@
                             46.6405 18.816 45.964 18.3989 45.5466Z"/>
                         </svg>
                        
-                        <h3 class="services__title">Excellent food</h3>
+                        <h3 class="services__title">diet recommendation</h3>
                         <p class="services__description">We offer our clients excellent quality services for many years, with the best and delicious food in the city.</p>
                     </div>
 
@@ -300,7 +300,7 @@
                             </defs>
                         </svg>
 
-                        <h3 class="services__title">Fast food</h3>
+                        <h3 class="services__title">Menu</h3>
                         <p class="services__description">We offer our clients excellent quality services for many years, with the best and delicious food in the city.</p>
                     </div>
 

@@ -150,7 +150,7 @@
       }
       #nav{
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         text-decoration: none;
         
         position: fixed;
@@ -220,11 +220,11 @@
       <div class="card flex-grow-1 bg-dark">
         
         <div class="card-header bg-primary text-white bg-dark" id="nav">
-          <a href="" class="nav__logo">Just Yumm!</a>
+          <a href="{% url 'page1' %}" class="nav__logo">Just Yumm!</a>
           <div class="nav__menu" id="nav-menu">
             <ul class="nav__list">
-              <li class="nav__item"><a href="#home" class="nav__link active-link">Back</a></li>
-              <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+              <li class="nav__item"><a href="{% url 'page1' %}" class="nav__link active-link">Back</a></li>
+              <li class="nav__item"><a href="{% url 'chat' %}" class="nav__link">Recipe</a></li>
               <li class="nav__item"><a href="#home" class="nav__link active-link reset">Reset</a></li>
             </ul>
           </div>
